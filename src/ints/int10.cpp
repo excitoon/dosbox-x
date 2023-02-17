@@ -16,6 +16,9 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+
+#include <iostream>
+
 #include <assert.h>
 
 #include "dosbox.h"
@@ -70,8 +73,18 @@ Bitu INT10_Handler(void) {
 	else if(J3_IsJapanese()) J3_OffCursor();
 	INT10_SetCurMode();
 
+    static bool first_time_set_mode = true;
+
 	switch (reg_ah) {
 	case 0x00:								/* Set VideoMode */
+        if (first_time_set_mode)
+        {
+            /// TODO: fix initialization to not call it.
+            first_time_set_mode = false;
+            break;
+        }
+        std::cout << "\033[2J" << std::flush;
+        break;
 		Mouse_BeforeNewVideoMode(true);
 		SetTrueVideoMode(reg_al);
 		if(IS_DOSV && IS_DOS_CJK && (reg_al == 0x03 || reg_al == 0x70 || reg_al == 0x72 || reg_al == 0x78)) {
@@ -121,6 +134,7 @@ Bitu INT10_Handler(void) {
 		INT10_SetCursorShape(reg_ch,reg_cl);
 		break;
 	case 0x02:								/* Set Cursor Pos */
+        /// TODO calculate positions and generate ESC-sequences.
 		INT10_SetCursorPos(reg_dh,reg_dl,reg_bh);
 		break;
 	case 0x03:								/* get Cursor Pos and Cursor Shape*/
