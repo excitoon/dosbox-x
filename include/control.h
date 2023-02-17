@@ -61,8 +61,8 @@ public:
         opt_eraseconf = false;
         opt_erasemapper = false;
         opt_exit = false;
-        opt_fastbioslogo = false;
-        opt_fastlaunch = false;
+        opt_fastbioslogo = true;
+        opt_fastlaunch = true;
         opt_fullscreen = false;
         opt_langcp = false;
         opt_log_con = false;
@@ -71,9 +71,9 @@ public:
         opt_noautoexec = false;
         opt_noconfig = false;
         opt_noconsole = false;
-        opt_nogui = false;
+        opt_nogui = true;
         opt_nolog = false;
-        opt_nomenu = false;
+        opt_nomenu = true;
         opt_prerun = false;
         opt_printconf = false;
         opt_promptfolder = -1;
@@ -82,7 +82,7 @@ public:
         opt_securemode = false;
         opt_showcycles = false;
         opt_showrt = false;
-        opt_silent = false;
+        opt_silent = true;
         opt_startmapper = false;
         opt_startui = false;
         opt_test = false;
