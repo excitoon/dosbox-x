@@ -83,8 +83,6 @@ Bitu INT10_Handler(void) {
             first_time_set_mode = false;
             break;
         }
-        std::cout << "\033[2J" << std::flush;
-        break;
 		Mouse_BeforeNewVideoMode(true);
 		SetTrueVideoMode(reg_al);
 		if(IS_DOSV && IS_DOS_CJK && (reg_al == 0x03 || reg_al == 0x70 || reg_al == 0x72 || reg_al == 0x78)) {
