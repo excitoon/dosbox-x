@@ -663,6 +663,7 @@ bool in_debug_showmsg = false;
 bool IsDebuggerActive(void);
 
 void DEBUG_ShowMsg(char const* format,...) {
+    return; /// "log console = false" does not help.
 	bool stderrlog = false;
 	char buf[512];
 	va_list msg;
@@ -822,6 +823,7 @@ void LOG::Exit() {
 void Null_Init(Section *sec);
 
 void LOG::operator() (char const* format, ...){
+    return; /// "log console = false" does not help.
 	const char *s_severity = "";
 	char buf[512];
 	va_list msg;

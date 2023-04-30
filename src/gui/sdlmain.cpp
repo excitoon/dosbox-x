@@ -1036,14 +1036,15 @@ bool CheckQuit(void) {
     std::string warn = section->Get_string("quit warning");
     bool quit = section->Get_bool("allow quit after warning");
     if (sdl.desktop.fullscreen) GFX_SwitchFullScreen();
-    if (warn == "true") {
-        if (!quit) {
-            systemmessagebox("Quit DOSBox-X warning","Quitting from DOSBox-X with this is currently disabled.","ok", "warning", 1);
-            return false;
-        } else
-            return systemmessagebox("Quit DOSBox-X warning","This will quit from DOSBox-X.\nAre you sure?","yesno", "question", 1);
-    } else if (warn == "false")
-        return true;
+    /// Config option does not work. Please don't break standard system behaviour. I would like app to quit on Ctrl+C.
+    /// if (warn == "true") {
+    ///    if (!quit) {
+    ///        systemmessagebox("Quit DOSBox-X warning","Quitting from DOSBox-X with this is currently disabled.","ok", "warning", 1);
+    ///        return false;
+    ///    } else
+    ///        return systemmessagebox("Quit DOSBox-X warning","This will quit from DOSBox-X.\nAre you sure?","yesno", "question", 1);
+    ///} else if (warn == "false")
+    return true;
     if (dos_kernel_disabled&&strcmp(RunningProgram, "DOSBOX-X")) {
         if (!quit) {
             systemmessagebox("Quit DOSBox-X warning","You cannot quit DOSBox-X while running a guest system.","ok", "warning", 1);
